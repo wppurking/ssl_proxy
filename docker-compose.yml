@@ -1,0 +1,15 @@
+stunnel:
+  image: dweomer/stunnel
+  links:
+   - polipo
+  ports:
+   - "465:443"
+  volumes:
+   - ./stunnel:/etc/stunnel
+
+polipo:
+  image: clue/polipo
+  ports:
+   - "8123:8123"
+  volumes:
+   - ./polipo:/etc/polipo

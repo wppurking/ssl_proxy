@@ -1,0 +1,19 @@
+# 输出日志
+logSyslog = true
+logFile = /var/log/polipo/polipo.log
+
+# 监听 HTTP 代理的地址
+proxyAddress = "0.0.0.0"
+proxyPort = 8123
+
+# 允许访问的客户端
+# 0.0.0.0/0 不做限制, 所有互联网可访问.   255.0.0.0/8, 255.255.0.0/16, 255.255.255.0/24
+allowedClients = 0.0.0.0/0 
+#allowedClients = 127.0.0.1, 192.168.0.0/16
+# http 协议的密码验证
+authCredentials = wyatt:616
+
+#缓存以及索引查询, 可通过 http://<proxyAddress>:<proxyPort> 查看
+cacheIsShared = true
+disableIndexing = false
+disableServersList = false
