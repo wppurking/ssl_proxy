@@ -1,0 +1,34 @@
+pid = /var/run/stunnel.pid
+
+foreground = yes
+debug = 7
+
+; no need to std out
+;output = /var/log/stunnel.log
+
+; 证书的验证级别
+;verify = 4
+;CAfile = /etc/stunnel/server.pem
+; 证书的位置. pem 里面的顺序为:  private key ,  public certification
+cert = /etc/stunnel/server.pem
+
+; 强制使用 TLS 而非 有漏洞的 SSLv2, SSLv3
+sslVersion = TLSv1.2
+;ciphers = ECDHE-RSA-AES256-GCM-SHA384
+options = NO_SSLv2
+options = NO_SSLv3
+
+; TCP fast open
+socket = l:TCP_NODELAY=1
+socket = r:TCP_NODELAY=1
+
+[ssl]
+; 接受前端 443 端口的请求
+accept = 443
+; 后端的 8123 端口的 Polipo
+connect = polipo:8123
+
+; 这个是一个当做 ssl socks server 的例子(需要客户端 ssl)
+[socks server]
+protocol = socks
+accept = 0.0.0.0:1080
